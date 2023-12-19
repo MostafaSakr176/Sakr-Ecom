@@ -54,11 +54,12 @@ function ResetPassword() {
 
   return (
     <>
+      <div className="container">
       <form
         className="row flex-column align-items-center mt-5"
         onSubmit={formikObj.handleSubmit}
       >
-        <div className="col-md-6 col-sm-12 m-2 text-start">
+        <div className="col-md-6 col-sm-12 mb-2 text-start">
           <label htmlFor="email" className="form-label">
             Email
           </label>
@@ -78,7 +79,7 @@ function ResetPassword() {
             ""
           )}
         </div>
-        <div className="col-md-6 col-sm-12 m-2 text-start">
+        <div className="col-md-6 col-sm-12 mb-2 text-start">
           <label htmlFor="password" className="form-label">
             new password
           </label>
@@ -106,7 +107,7 @@ function ResetPassword() {
             disabled={!(formikObj.isValid && formikObj.dirty)}
           >
             {isResetPasswordButtonLoading ? (
-              <InfinitySpin width="100" color="#fff" />
+              <InfinitySpin width="45" color="#fff" />
             ) : (
               "set new password"
             )}
@@ -114,6 +115,7 @@ function ResetPassword() {
           
         </div>
       </form>
+      </div>
     </>
   );
 }

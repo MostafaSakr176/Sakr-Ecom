@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userSignUp } from "../../store/slices/SignUpSlice";
 import { InfinitySpin } from "react-loader-spinner";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function SignUp() {
   const dispatch = useDispatch();
@@ -72,11 +72,12 @@ function SignUp() {
 
   return (
     <>
+      <div className="container">
       <form
-        className="d-flex flex-column align-items-center mt-5"
+        className="row align-items-center mt-5"
         onSubmit={formikObj.handleSubmit}
       >
-        <div className="col-md-6 m-2 text-start">
+        <div className="col-md-6 col-sm-12 mb-2 text-start">
           <label htmlFor="name" className="form-label">
             Name
           </label>
@@ -96,7 +97,7 @@ function SignUp() {
             ""
           )}
         </div>
-        <div className="col-md-6 m-2 text-start">
+        <div className="col-md-6 col-sm-12 mb-2 text-start">
           <label htmlFor="phone" className="form-label">
             phone
           </label>
@@ -116,7 +117,7 @@ function SignUp() {
             ""
           )}
         </div>
-        <div className="col-md-6 m-2 text-start">
+        <div className="col-md-6 col-sm-12 mb-2 text-start">
           <label htmlFor="email" className="form-label">
             Email
           </label>
@@ -136,7 +137,7 @@ function SignUp() {
             ""
           )}
         </div>
-        <div className="col-md-6 m-2 text-start">
+        <div className="col-md-6 col-sm-12 mb-2 text-start">
           <label htmlFor="password" className="form-label">
             Password
           </label>
@@ -157,7 +158,7 @@ function SignUp() {
             ""
           )}
         </div>
-        <div className="col-md-6 m-2 text-start">
+        <div className="col-md-6 col-sm-12 mb-2 text-start">
           <label htmlFor="repassword" className="form-label">
             rePassword
           </label>
@@ -179,20 +180,23 @@ function SignUp() {
           )}
         </div>
 
-        <div className="col-12 mt-4 text-center">
+        <div className="col-12 mt-4 mb-2 text-center">
           <button
             type="submit"
             className="btn btn-primary"
             disabled={!(formikObj.isValid && formikObj.dirty)}
           >
             {isSignUpButtonLoading ? (
-              <InfinitySpin width="100" color="#fff" />
+              <InfinitySpin width="45" color="#fff" />
             ) : (
-              "Sign in"
+              "sign up"
             )}
           </button>
+          
         </div>
+        <p className="text-center">do you have account ? <Link to="/signin">sign in</Link></p>
       </form>
+      </div>
     </>
   );
 }

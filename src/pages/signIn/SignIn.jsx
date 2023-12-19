@@ -58,11 +58,12 @@ function SignIn() {
 
   return (
     <>
+    <div className="container">
       <form
         className="row flex-column align-items-center justify-content-center mt-5"
         onSubmit={formikObj.handleSubmit}
       >
-        <div className="col-md-6 col-sm-12 m-2 text-start">
+        <div className="col-md-6 col-sm-12 mb-2 text-start">
           <label htmlFor="email" className="form-label">
             Email
           </label>
@@ -82,7 +83,7 @@ function SignIn() {
             ""
           )}
         </div>
-        <div className="col-md-6 col-sm-12 m-2 text-start">
+        <div className="col-md-6 col-sm-12 mb-2 text-start">
           <label htmlFor="password" className="form-label">
             Password
           </label>
@@ -110,7 +111,7 @@ function SignIn() {
             disabled={!(formikObj.isValid && formikObj.dirty)}
           >
             {isSignInButtonLoading ? (
-              <InfinitySpin width="100" color="#fff" />
+              <InfinitySpin width="45" color="#fff" />
             ) : (
               "Sign in"
             )}
@@ -118,7 +119,10 @@ function SignIn() {
           
         </div>
         <Link to="/forget-pass" className="text-center">forget password</Link>
+        <p className="text-center">do you haven't account ? <Link to="/signin">sign up</Link></p>
       </form>
+    </div>
+      
     </>
   );
 }

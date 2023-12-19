@@ -52,11 +52,12 @@ function ForgetPass() {
 
   return (
     <>
+      <div className="container">
       <form
         className="row flex-column align-items-center mt-5"
         onSubmit={formikObj.handleSubmit}
       >
-        <div className="col-md-6 col-sm-12 m-2 text-start">
+        <div className="col-md-6 col-sm-12 mb-2 text-start">
           <label htmlFor="email" className="form-label">
             Email
           </label>
@@ -83,7 +84,7 @@ function ForgetPass() {
             disabled={!(formikObj.isValid && formikObj.dirty)}
           >
             {isSendCodeButtonLoading ? (
-              <InfinitySpin width="100" color="#fff" />
+              <InfinitySpin width="45" color="#fff" />
             ) : (
               "send code"
             )}
@@ -91,6 +92,7 @@ function ForgetPass() {
           
         </div>
       </form>
+      </div>
     </>
   );
 }

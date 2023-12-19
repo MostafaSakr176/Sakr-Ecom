@@ -74,7 +74,7 @@ function VerifyResetCode() {
             disabled={!(formikObj.isValid && formikObj.dirty)}
           >
             {isVerifyCodeButtonLoading ? (
-              <InfinitySpin width="100" color="#fff" />
+              <InfinitySpin width="45" color="#fff" />
             ) : (
               "Verify code "
             )}

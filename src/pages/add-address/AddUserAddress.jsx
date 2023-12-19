@@ -62,11 +62,12 @@ function AddUserAddress() {
 
   return (
     <>
+      <div className="container">
       <form
-        className="row flex-column align-items-center mt-5"
+        className="row align-items-center mt-5"
         onSubmit={formikObj.handleSubmit}
       >
-        <div className="col-md-6 col-sm-12 m-2 text-start">
+        <div className="col-md-6 col-sm-12 mb-2 text-start">
           <label htmlFor="text" className="form-label">
             name
           </label>
@@ -86,7 +87,7 @@ function AddUserAddress() {
             ""
           )}
         </div>
-        <div className="col-md-6 col-sm-12 m-2 text-start">
+        <div className="col-md-6 col-sm-12 mb-2 text-start">
           <label htmlFor="details" className="form-label">
             details
           </label>
@@ -101,7 +102,7 @@ function AddUserAddress() {
           />
           
         </div>
-        <div className="col-md-6 col-sm-12 m-2 text-start">
+        <div className="col-md-6 col-sm-12 mb-2 text-start">
           <label htmlFor="phone" className="form-label">
             phone
           </label>
@@ -122,7 +123,7 @@ function AddUserAddress() {
             ""
           )}
         </div>
-        <div className="col-md-6 col-sm-12 m-2 text-start">
+        <div className="col-md-6 col-sm-12 mb-2 text-start">
           <label htmlFor="city" className="form-label">
             city
           </label>
@@ -157,6 +158,7 @@ function AddUserAddress() {
           </button>
         </div>
       </form>
+      </div>
     </>
   );
 }
