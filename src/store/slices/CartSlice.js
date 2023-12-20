@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 
 
 const initialState = {
+  token: localStorage.getItem('token'),
   getCartProductsMessage: "",
   getCartProductsIsLoading: false,
 
@@ -65,14 +66,12 @@ export const CartSlice = createSlice({
       state.cartQuantity = action.payload.numOfCartItems
       state.totalCartPrice = action.payload.data.totalCartPrice
       state.getCartProductsIsLoading = false;
-      state.getCartProductsMessage = ""
 
       // console.log(state.cartQuantity);
 
     });
     builder.addCase( getCartProducts.rejected , (state , action)=>{
       // state.cartProducts = action.payload
-      state.getCartProductsMessage = "there is no products in cart"
       state.getCartProductsIsLoading = false;
       state.cartProducts =[]
       // console.log(action.error);
@@ -96,8 +95,12 @@ export const CartSlice = createSlice({
 
     });
     builder.addCase( addCartProduct.rejected , (state , action)=>{
-      // state.cartProducts = action.payload
-      toast.error("adding product faild" ,{
+      if (state.token) {
+        toast.error("adding product faild" ,{
+          pauseOnFocusLoss: false
+        })
+      }
+      toast.error("sorry you must login first!" ,{
         pauseOnFocusLoss: false
       })
       // state.addCartProductIsLoading = false;

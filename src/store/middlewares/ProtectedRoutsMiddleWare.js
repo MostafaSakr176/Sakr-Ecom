@@ -8,20 +8,16 @@ function ProtectedRoutsMiddleWare({children}) {
   const token = useSelector(state => state.SignIn.token);
   console.log("fgh");
 
-
-
-
   if (token === null) {
     console.log("yyy");
     toast.error("You must login first !")
     return <Navigate to='/signin' />
   }
 
-  if (token) {
     return (
       <div>{children}</div>
     )
-  }
+
 }
 
 export default ProtectedRoutsMiddleWare

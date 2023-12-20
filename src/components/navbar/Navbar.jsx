@@ -12,7 +12,7 @@ function Navbar() {
 
   const userName = useSelector(state => state.SignIn.userInfo?.name);
   console.log(userName);
-  const name = userName?.split(" ")
+  // const name = userName?.split(" ")
   const token = useSelector(state => state.SignIn.token);
   const cartQuantity = useSelector(state => state.Cart.cartQuantity);
   const WishListQuantity = useSelector(state => state.WishList.WishListQuantity);
@@ -91,7 +91,7 @@ function Navbar() {
                     </Link>
                   </li>}
                   {token && <li className={styles.navLinks} >
-                    <NavLink className={styles.navLink} to="/profile">Hi, {name[0]}</NavLink>
+                    <NavLink className={styles.navLink} to="/profile">Hi, {userName}</NavLink>
                   </li>}
                   <li>
                     {!token && <Link type="button" className="btn btn-light ms-3" to="/signin">Sign In</Link>}

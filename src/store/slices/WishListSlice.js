@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 
 
 const initialState = {
+  token: localStorage.getItem('token'),
   getWishListProductsIsLoading: false,
 
   addWishListProductIsLoading: false,
@@ -73,9 +74,15 @@ export const WishListSlice = createSlice({
       })
     });
     builder.addCase( addWishListProduct.rejected , (state , action)=>{
-      toast.error("adding product to wishlist faild" ,{
+      if (state.token) {
+        toast.error("adding product to wishlist faild" ,{
+          pauseOnFocusLoss: false
+        })
+      }
+      toast.error("sorry you must login first!" ,{
         pauseOnFocusLoss: false
       })
+
       state.addWishListProductIsLoading = false;
     });
 

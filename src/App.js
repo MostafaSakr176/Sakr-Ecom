@@ -51,9 +51,9 @@ const dispatch = useDispatch()
         <Route path='/about' element={<ProtectedRoutsMiddleWare><About/></ProtectedRoutsMiddleWare>}/>
         <Route path='/products' element={<Products/>}/>
         <Route path='/contactUs' element={<ContactUs/>}/>
-        <Route path='/profile' element={<Profile/>}/>
-        <Route path='/cart' element={<Cart/>}/>
-        <Route path='/wishlist' element={<WishList/>}/>
+        <Route path='/profile' element={<ProtectedRoutsMiddleWare><Profile/></ProtectedRoutsMiddleWare>}/>
+        <Route path='/cart' element={<ProtectedRoutsMiddleWare><Cart/></ProtectedRoutsMiddleWare>}/>
+        <Route path='/wishlist' element={<ProtectedRoutsMiddleWare><WishList/></ProtectedRoutsMiddleWare>}/>
         <Route path='/signin' element={<SignIn/>}/>
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/forget-pass' element={<ForgetPass/>}/>
@@ -61,7 +61,7 @@ const dispatch = useDispatch()
         <Route path='/reset-password' element={<ResetPassword/>}/>
         <Route path='/productDetails/:productID' element={<ProductDetails/>}/>
         <Route path='/catigoryProducts/:categoryID' element={<CatigoryProducts/>}/>
-        <Route path='/add-address' element={<AddUserAddress/>}/>
+        <Route path='/add-address' element={<ProtectedRoutsMiddleWare><AddUserAddress/></ProtectedRoutsMiddleWare>}/>
       </Routes>
     </div>
   );
