@@ -93,6 +93,7 @@ export const WishListSlice = createSlice({
       state.removeWishListProductIsLoading = true;
     });
     builder.addCase( removeWishListProduct.fulfilled , (state , action)=>{
+      
       console.log("remove product",action.payload);
       state.removeWishListProductIsLoading = false;
       toast.success("product removed from wishlist successfuly" ,{

@@ -98,7 +98,7 @@ useEffect(()=>{
                  </div>
                  <button type="button" className="btn btn-warning" onClick={()=>{dispatch(removeCartProduct(ele.product.id))}}>remove</button>
 
-                <button type="button" className="btn btn-danger mx-1"  onClick={()=>{dispatch(addWishListProduct(ele.id))}}>+ wishlist</button>
+                <button type="button" className="btn btn-danger mx-1"  onClick={()=>{dispatch(addWishListProduct(ele.product.id))}}>+ wishlist</button>
               </div>
             </div>
             </div>
