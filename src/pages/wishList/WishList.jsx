@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addWishListProduct, getWishListProducts, removeWishListProduct } from '../../store/slices/WishListSlice'
 import { TailSpin } from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { addCartProduct } from '../../store/slices/CartSlice';
 
 
@@ -41,7 +40,7 @@ if (getWishListProductsIsLoading) {
 
   if (WishListQuantity === 0) {
     return <>
-      <h1>WishList is impty</h1>
+      <h1 className='text-center'>WishList is impty</h1>
     </>
   }
 
@@ -49,11 +48,11 @@ if (getWishListProductsIsLoading) {
 
   return (
     <>
-        <h1>WishList</h1>
+        <h1 className='text-center'>WishList</h1>
         <div className="container">
         <div className="row">
           {WishListProducts.map(ele => 
-                      <div className="col-md-4 col-lg-3 mb-3" key={ele.id}>
+                      <div className="col-md-4 col-lg-3  mb-3" key={ele.id}>
                       <div className="card border-0">
                         <Link to={"/productDetails/"+ele.id}>
                         <img src={ele.imageCover} className="card-img-top" alt="..." />

@@ -5,11 +5,9 @@ import { toast } from 'react-toastify';
 
 const initialState = {
   token: localStorage.getItem('token'),
+
   getWishListProductsIsLoading: false,
 
-  addWishListProductIsLoading: false,
-
-  removeWishListProductIsLoading: false,
   WishListProducts: [],
   WishListQuantity : 0
 }
@@ -48,7 +46,6 @@ export const WishListSlice = createSlice({
       state.WishListProducts = action.payload.data
       state.WishListQuantity = action.payload.count
       state.getWishListProductsIsLoading = false;
-      state.getWishListProductsMessage = ""
     });
     builder.addCase( getWishListProducts.rejected , (state , action)=>{
       state.getWishListProductsMessage = "there is no products in WishList"
@@ -59,15 +56,8 @@ export const WishListSlice = createSlice({
 
 
 
-
-    builder.addCase( addWishListProduct.pending , (state , action)=>{
-      state.addWishListProductIsLoading = true;
-    });
     builder.addCase( addWishListProduct.fulfilled , (state , action)=>{
-      console.log("adding product",action.payload);
-      // state.WishListProducts = action.payload.data
-      state.addWishListProductIsLoading = false;
-      state.addWishListProductMessage = action.payload.message
+
       state.WishListQuantity = action.payload.data.length
       toast.success("product added to wishlist successfuly",{
         pauseOnFocusLoss: false
@@ -93,7 +83,7 @@ export const WishListSlice = createSlice({
       state.removeWishListProductIsLoading = true;
     });
     builder.addCase( removeWishListProduct.fulfilled , (state , action)=>{
-      
+      // state.WishListProducts = action.payload.data
       console.log("remove product",action.payload);
       state.removeWishListProductIsLoading = false;
       toast.success("product removed from wishlist successfuly" ,{

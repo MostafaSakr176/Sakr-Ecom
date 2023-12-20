@@ -82,9 +82,8 @@ export const CartSlice = createSlice({
       // state.addCartProductIsLoading = true;
     });
     builder.addCase( addCartProduct.fulfilled , (state , action)=>{
-      // console.log("adding product",action.payload);
+      
       state.cartProducts = action.payload.data.products
-      // state.addCartProductIsLoading = false;
       state.addCartProductMessage = action.payload.message
       state.cartQuantity = action.payload.numOfCartItems
       state.totalCartPrice = action.payload.data.totalCartPrice
@@ -108,11 +107,8 @@ export const CartSlice = createSlice({
     });
 
 
-    builder.addCase( removeCartProduct.pending , (state , action)=>{
-      // state.removeCartProductIsLoading = true;
-    });
+
     builder.addCase( removeCartProduct.fulfilled , (state , action)=>{
-      // console.log("remove product",action.payload);
       state.cartProducts = action.payload.data.products
       state.removeCartProductIsLoading = false;
       toast.success("product removed successfuly" ,{
@@ -121,11 +117,9 @@ export const CartSlice = createSlice({
       state.cartQuantity = action.payload.numOfCartItems
       state.totalCartPrice = action.payload.data.totalCartPrice
 
-      console.log(state.cartQuantity);
 
     });
     builder.addCase( removeCartProduct.rejected , (state , action)=>{
-      // state.cartProducts = action.payload
       toast.error("remove product faild" ,{
         pauseOnFocusLoss: false
       })
