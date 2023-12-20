@@ -52,7 +52,7 @@ function Products() {
               <div className="card-body">
                 <h5 className="card-title">{ele.title}</h5>
                 <div className="d-flex justify-content-between mb-3">
-                  <span>{ele.price}</span> <span><i class="fa-solid fa-star text-warning"></i> {ele.ratingsAverage}</span>
+                  <span>{ele.price} EGP</span> <span><i class="fa-solid fa-star text-warning"></i> {ele.ratingsAverage}</span>
                 </div>
                 
                 <button type="button" className="btn btn-success mx-1" onClick={()=>{dispatch(addCartProduct(ele.id))}}>+ cart</button>

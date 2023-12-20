@@ -57,8 +57,8 @@ function ProductDetails() {
                     <small className="text-muted">{data.data.data.slug}</small>
                   </p>
                   <p className="card-text">
-                    price :{" "}
-                    <small className="text-muted">{data.data.data.price}</small>
+                    price : {" "}
+                    <small className="text-muted">{data.data.data.price} EGP</small>
                   </p>
                 </div>
                 <button type="button" className="btn btn-success" onClick={()=>{dispatch(addCartProduct(data.data.data.id))}}>+ cart</button>
