@@ -27,6 +27,9 @@ export const SignUpSlice = createSlice({
   name: 'SignUp',
   initialState,
   reducers: {
+    setIsSignUpSuccessFalse : (state , acttion)=>{
+      state.isSignUpSuccess = false
+    }
   },
   extraReducers: (builder)=>{
 
@@ -64,6 +67,6 @@ export const SignUpSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const {} = SignUpSlice.actions
+export const {setIsSignUpSuccessFalse} = SignUpSlice.actions
 
 export default SignUpSlice.reducer

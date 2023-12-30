@@ -3,10 +3,10 @@ import { useFormik } from "formik";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userSignIn } from "../../store/slices/SignInSlice";
-import { InfinitySpin } from "react-loader-spinner";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getCartProducts } from "../../store/slices/CartSlice";
 import { getWishListProducts } from "../../store/slices/WishListSlice";
+import { Box, Button, CircularProgress, TextField } from "@mui/material";
 
 function SignIn() {
   const dispatch = useDispatch();
@@ -48,7 +48,7 @@ function SignIn() {
   });
   
     if (isSignInSuccess) {
-      navigate("/home")
+      navigate("/")
       dispatch(getCartProducts())
       dispatch(getWishListProducts())
     }
@@ -58,8 +58,47 @@ function SignIn() {
 
   return (
     <>
-    <div className="container">
-      <form
+
+<Box component="form" onSubmit={formikObj.handleSubmit} autoComplete="off" sx={{display: "flex" , flexDirection: "column" ,alignContent: "center", justifyContent: "center"}}>
+
+        <TextField
+          error = { formikObj.errors.email && formikObj.touched.email ? true : false}
+          label="Email"
+          name="email"
+          defaultValue={formikObj.values.email}
+          helperText={formikObj.errors.email && formikObj.touched.email ? formikObj.errors.email : "" }
+          onBlur={formikObj.handleBlur}
+          onChange={formikObj.handleChange}
+          value={formikObj.values.email}
+          required
+                    fullWidth={true}
+          sx={{marginBottom:"20px",minWidth:"300px"}}
+        />
+        
+        <TextField
+          error = { formikObj.errors.password && formikObj.touched.password ? true : false}
+          label="Password"
+          name="password"
+          defaultValue={formikObj.values.password}
+          helperText={formikObj.errors.password && formikObj.touched.password ? formikObj.errors.password : "" }
+          onBlur={formikObj.handleBlur}
+          onChange={formikObj.handleChange}
+          value={formikObj.values.password}
+          required
+                    fullWidth={true}
+          sx={{marginBottom:"20px",minWidth:"300px"}}
+          type="password"
+        />
+        
+        <Button variant="contained" sx={{Width:"150px", height:"40px", margin:"auto"}} type="submit" disabled={!(formikObj.isValid && formikObj.dirty)}>{isSignInButtonLoading ? (
+              <CircularProgress sx={{color:"rgba(0, 0, 0, 0.87)"}} size={30}/>
+            ) : (
+              "Log In"
+            )} </Button>
+      
+    </Box>
+    
+      {/* <form
         className="row flex-column align-items-center justify-content-center mt-5"
         onSubmit={formikObj.handleSubmit}
       >
@@ -119,9 +158,8 @@ function SignIn() {
           
         </div>
         <Link to="/forget-pass" className="text-center">forget password</Link>
-        <p className="text-center">do you haven't account ? <Link to="/signin">sign up</Link></p>
-      </form>
-    </div>
+        <p className="text-center">do you haven't account ? <Link to="/signup">sign up</Link></p>
+      </form> */}
       
     </>
   );

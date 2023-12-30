@@ -9,6 +9,7 @@ import {
   Button,
   Box,
   styled,
+  Typography,
 } from "@mui/material";
 import { Favorite, Menu, ShoppingCart } from "@mui/icons-material";
 import { purple } from "@mui/material/colors";
@@ -116,17 +117,18 @@ const Appbar = ({ drawerWidth, showDrawer }) => {
                 "&:hover": { fontSize: "16.5px" },
                 display: "flex",
             alignItems: "center",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
+            cursor:"pointer"
               }}
               color="inherit"
               onClick={() => {
                 navigate("/profile");
               }}
             >
-              {/* <Typography mr={2} variant="body1" color="inherit">
+              <Typography mx={2} variant="body1" color="inherit">
                 {userName}
-              </Typography> */}
-              <Avatar alt={userName} src="./imges/Ali Hassan.JPG" />
+              </Typography>
+              <Avatar alt={userName} src="..." />
             </Link>}
           </Box>
         </Box>

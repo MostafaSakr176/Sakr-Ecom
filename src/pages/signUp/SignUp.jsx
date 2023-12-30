@@ -2,9 +2,10 @@ import "./signUp.css";
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userSignUp } from "../../store/slices/SignUpSlice";
+import { userSignUp , setIsSignUpSuccessFalse } from "../../store/slices/SignUpSlice";
 import { InfinitySpin } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
+import { Box, Button, CircularProgress, TextField } from "@mui/material";
 
 function SignUp() {
   const dispatch = useDispatch();
@@ -65,15 +66,95 @@ function SignUp() {
   useEffect(()=>{
     if (isSignUpSuccess) {
       setTimeout(()=>{navigate("/signin")} , 1000);
+      dispatch(setIsSignUpSuccessFalse())
     }
-  },[isSignUpSuccess , navigate])
+
+  },[isSignUpSuccess])
 
 
 
   return (
     <>
-      <div className="container">
-      <form
+      
+
+      <Box component="form" onSubmit={formikObj.handleSubmit} autoComplete="off" sx={{display: "flex" , flexDirection: "column" ,alignContent: "center", justifyContent: "center"}}>
+      <TextField
+          error = { formikObj.errors.name && formikObj.touched.name ? true : false}
+          label="Name"
+          name="name"
+          defaultValue={formikObj.values.name}
+          helperText={formikObj.errors.name && formikObj.touched.name ? formikObj.errors.name : "" }
+          onBlur={formikObj.handleBlur}
+          onChange={formikObj.handleChange}
+          value={formikObj.values.name}
+          required
+          fullWidth={true}
+          sx={{marginBottom:"20px", minWidth:"300px"}}
+        />
+        <TextField
+          error = { formikObj.errors.email && formikObj.touched.email ? true : false}
+          label="Email"
+          name="email"
+          defaultValue={formikObj.values.email}
+          helperText={formikObj.errors.email && formikObj.touched.email ? formikObj.errors.email : "" }
+          onBlur={formikObj.handleBlur}
+          onChange={formikObj.handleChange}
+          value={formikObj.values.email}
+          required
+                    fullWidth={true}
+          sx={{marginBottom:"20px",minWidth:"300px"}}
+        />
+        <TextField
+          error = { formikObj.errors.phone && formikObj.touched.phone ? true : false}
+          label="Phone"
+          name="phone"
+          defaultValue={formikObj.values.phone}
+          helperText={formikObj.errors.phone && formikObj.touched.phone ? formikObj.errors.phone : "" }
+          onBlur={formikObj.handleBlur}
+          onChange={formikObj.handleChange}
+          value={formikObj.values.phone}
+          required
+                    fullWidth={true}
+          sx={{marginBottom:"20px",minWidth:"300px"}}
+        />
+        <TextField
+          error = { formikObj.errors.password && formikObj.touched.password ? true : false}
+          label="Password"
+          name="password"
+          defaultValue={formikObj.values.password}
+          helperText={formikObj.errors.password && formikObj.touched.password ? formikObj.errors.password : "" }
+          onBlur={formikObj.handleBlur}
+          onChange={formikObj.handleChange}
+          value={formikObj.values.password}
+          required
+                    fullWidth={true}
+          sx={{marginBottom:"20px",minWidth:"300px"}}
+          type="password"
+        />
+        <TextField
+          error = { formikObj.errors.rePassword && formikObj.touched.rePassword ? true : false}
+          label="rePassword"
+          name="rePassword"
+          defaultValue={formikObj.values.rePassword}
+          helperText={formikObj.errors.rePassword && formikObj.touched.rePassword ? formikObj.errors.rePassword : "" }
+          onBlur={formikObj.handleBlur}
+          onChange={formikObj.handleChange}
+          value={formikObj.values.rePassword}
+          required
+                    fullWidth={true}
+          sx={{marginBottom:"20px",minWidth:"300px"}}
+          type="password"
+        />
+        <Button variant="contained" sx={{Width:"150px", height:"40px", margin:"auto"}} type="submit" disabled={!(formikObj.isValid && formikObj.dirty)}>{isSignUpButtonLoading ? (
+              <CircularProgress sx={{color:"rgba(0, 0, 0, 0.87)"}} size={30}/>
+            ) : (
+              "Sign Up"
+            )} </Button>
+      
+    </Box>
+
+
+      {/* <form
         className="row align-items-center mt-5"
         onSubmit={formikObj.handleSubmit}
       >
@@ -195,8 +276,8 @@ function SignUp() {
           
         </div>
         <p className="text-center">do you have account ? <Link to="/signin">sign in</Link></p>
-      </form>
-      </div>
+      </form> */}
+      
     </>
   );
 }
