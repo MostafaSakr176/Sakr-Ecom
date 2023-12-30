@@ -87,7 +87,7 @@ const Appbar = ({ drawerWidth, showDrawer }) => {
             }}><ShoppingCart />({cartQuantity}) </Button>}
             {token && <Button variant="text" color="inherit" onClick={() => {
               navigate("/wishlist");
-            }}><Favorite />({WishListQuantity}) </Button>}
+            }}><Favorite color="error" />({WishListQuantity}) </Button>}
             
             {!token && <ColorButton
         type="submit"
@@ -125,10 +125,10 @@ const Appbar = ({ drawerWidth, showDrawer }) => {
                 navigate("/profile");
               }}
             >
-              <Typography mx={2} variant="body1" color="inherit">
+              {/* <Typography ml={2} mr={1} variant="body1" color="inherit">
                 {userName}
-              </Typography>
-              <Avatar alt={userName} src="..." />
+              </Typography> */}
+              <Avatar alt={userName} src=".." />
             </Link>}
           </Box>
         </Box>

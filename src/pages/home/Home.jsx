@@ -1,32 +1,26 @@
-import React, { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getAllProducts } from "../../store/slices/ProductsSlice";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+
+import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { TailSpin } from "react-loader-spinner";
 import Slider from "react-slick";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addCartProduct } from "../../store/slices/CartSlice";
 import { addWishListProduct } from "../../store/slices/WishListSlice";
 
-import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { RemoveRedEye, ShoppingCart, Star } from "@mui/icons-material";
-import { Tooltip } from "@mui/material";
+import { CardActionArea, Tooltip , Link } from "@mui/material";
 
 function Home() {
   const dispatch = useDispatch();
@@ -47,16 +41,23 @@ function Home() {
   const CatigoriesInfo = useQuery("CatigoriesQuery", getAllCatigories);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 7,
-    slidesToScroll: 7,
+    arrows:false,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    centerPadding: "30px",
+    autoplay: true ,
+    autoplaySpeed: 2000,
+    pauseOnHover:true,
+    easing: "linear",
+
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 4,
           slidesToScroll: 3,
           infinite: true,
           dots: true,
@@ -73,7 +74,8 @@ function Home() {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          fade:true,
+          slidesToShow: 1 ,
           slidesToScroll: 1,
         },
       },
@@ -104,17 +106,28 @@ function Home() {
       <h1>Home</h1>
 
       <div className="my-5">
-        <Slider {...settings}>
+        <Slider {...settings} className="px-2">
           {CatigoriesInfo.data?.data.data.map((ele, idx) => (
-            <Link to={"/catigoryProducts/" + ele._id} key={idx}>
-              <img
-                className="w-100"
-                style={{ height: "200px" }}
-                src={ele.image}
-                alt=""
-              />
-              <h6 style={{ color: "#000", margin: "10px" }}>{ele.name}</h6>
-            </Link>
+            <div key={idx}>
+            <Link sx={{textDecoration:"none" , textAlign:"center"}} onClick={() => {
+                          navigate(`/catigoryProducts/${ele.id}`);
+                        }}>
+              <Card >
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="200"
+          image={ele.image}
+          alt="green iguana"
+        />
+        <CardContent sx={{backgroundColor:"transparent"}}>
+          <Typography gutterBottom variant="h6" component="div">
+            {ele.name}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+            </Link></div>
           ))}
         </Slider>
       </div>
@@ -123,7 +136,7 @@ function Home() {
         <div className="row">
           {ProductsInfo.data?.data.data.map(
             (ele) => (
-              <div className="col-md-3 col-sm-12 mb-3">
+              <div className="col-md-3 col-sm-12 mb-3" key={ele.id}>
                 <Card>
                   <CardHeader
                     avatar={
@@ -141,7 +154,7 @@ function Home() {
                   />
                   <CardMedia
                     component="img"
-                    height="220"
+                    height="250"
                     image={ele.imageCover}
                     alt="Paella dish"
                   />

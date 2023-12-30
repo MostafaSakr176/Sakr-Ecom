@@ -3,8 +3,7 @@ import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userSignUp , setIsSignUpSuccessFalse } from "../../store/slices/SignUpSlice";
-import { InfinitySpin } from "react-loader-spinner";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Box, Button, CircularProgress, TextField } from "@mui/material";
 
 function SignUp() {
@@ -15,7 +14,7 @@ function SignUp() {
     (state) => state.SignUp.isSignUpButtonLoading
   );
   const isSignUpSuccess = useSelector((state) => state.SignUp.isSignUpSuccess);
-  const isSignUpFaild = useSelector((state) => state.SignUp.isSignUpFaild);
+  // const isSignUpFaild = useSelector((state) => state.SignUp.isSignUpFaild);
 
   const user = {
     name: "",
