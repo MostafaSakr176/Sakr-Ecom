@@ -27,11 +27,6 @@ function Navbar() {
   }
 
 
-  // useEffect(()=>{
-  //   dispatch(getCartProducts())
-  //   dispatch(getWishListProducts())
-  //   dispatch(getTokenInfo())
-  // },[cartQuantity , WishListQuantity])
 
 
 

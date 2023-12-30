@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addWishListProduct, getWishListProducts, removeWishListProduct } from '../../store/slices/WishListSlice'
+import { getWishListProducts, removeWishListProduct } from '../../store/slices/WishListSlice'
 import { TailSpin } from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
 import { addCartProduct } from '../../store/slices/CartSlice';
@@ -53,26 +53,7 @@ useEffect(()=>{
                         </div>
                       </div>
                       </div>
-          //   <div className="col-md-4 col-lg-3" key={ele.id}>
-          //   <div className="card">
-          //     <img src={ele.imageCover} className="card-img-top" alt="..." />
-          //     <div className="card-body">
-          //       <h5 className="card-title">{ele.title}</h5>
-          //       <p className="card-text">
-          //         {ele.description}
-          //       </p>
-          //       <div>
-          //         <Link to={"/productDetails/"+ele.id} className="btn btn-primary">
-          //           details
-          //         </Link>
-          //       <button type="button" className="btn btn-success" id={ele.id} onClick={()=>{dispatch(addCartProduct(ele.id))}}>+ cart</button>
-          //         <button type="button" className="btn btn-warning" onClick={()=>{dispatch(removeWishListProduct(ele.id))}}>remove</button>
-                  
-          //       </div>
-
-          //     </div>
-          //   </div>
-          // </div>
+          
           )}
           
         </div>

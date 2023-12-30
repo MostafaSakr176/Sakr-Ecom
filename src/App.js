@@ -24,6 +24,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCartProducts } from './store/slices/CartSlice';
 import { getWishListProducts } from './store/slices/WishListSlice';
 import { getTokenInfo } from './store/slices/SignInSlice';
+import Root from './pages/Root';
+import NotFound from './pages/NotFound';
 
 function App() {
 
@@ -43,26 +45,33 @@ const dispatch = useDispatch()
 
   return (
     <div className="App">
-      <Navbar />
+      {/* <Navbar /> */}
       <ToastContainer />
       <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/home' element={<Home/>}/>
-        <Route path='/about' element={<ProtectedRoutsMiddleWare><About/></ProtectedRoutsMiddleWare>}/>
-        <Route path='/products' element={<Products/>}/>
-        <Route path='/contactUs' element={<ContactUs/>}/>
-        <Route path='/profile' element={<ProtectedRoutsMiddleWare><Profile/></ProtectedRoutsMiddleWare>}/>
-        <Route path='/cart' element={<ProtectedRoutsMiddleWare><Cart/></ProtectedRoutsMiddleWare>}/>
-        <Route path='/wishlist' element={<ProtectedRoutsMiddleWare><WishList/></ProtectedRoutsMiddleWare>}/>
-        <Route path='/signin' element={<SignIn/>}/>
-        <Route path='/signup' element={<SignUp/>}/>
-        <Route path='/forget-pass' element={<ForgetPass/>}/>
-        <Route path='/verify-code' element={<VerifyResetCode/>}/>
-        <Route path='/reset-password' element={<ResetPassword/>}/>
-        <Route path='/productDetails/:productID' element={<ProductDetails/>}/>
-        <Route path='/catigoryProducts/:categoryID' element={<CatigoryProducts/>}/>
-        <Route path='/add-address' element={<ProtectedRoutsMiddleWare><AddUserAddress/></ProtectedRoutsMiddleWare>}/>
+      <Route path='/' element={<Root />} >
+          <Route index element={<Home/>}/>
+          <Route path='/about' element={<ProtectedRoutsMiddleWare><About/></ProtectedRoutsMiddleWare>}/>
+          <Route path='/products' element={<Products/>}/>
+          <Route path='/contactUs' element={<ContactUs/>}/>
+          <Route path='/profile' element={<ProtectedRoutsMiddleWare><Profile/></ProtectedRoutsMiddleWare>}/>
+          <Route path='/cart' element={<ProtectedRoutsMiddleWare><Cart/></ProtectedRoutsMiddleWare>}/>
+          <Route path='/wishlist' element={<ProtectedRoutsMiddleWare><WishList/></ProtectedRoutsMiddleWare>}/>
+          
+          <Route path='/productDetails/:productID' element={<ProductDetails/>}/>
+          <Route path='/catigoryProducts/:categoryID' element={<CatigoryProducts/>}/>
+          <Route path='/add-address' element={<ProtectedRoutsMiddleWare><AddUserAddress/></ProtectedRoutsMiddleWare>}/>
+          <Route path='/signin' element={<SignIn/>}/>
+          <Route path='/signup' element={<SignUp/>}/>
+          <Route path='/forget-pass' element={<ForgetPass/>}/>
+          <Route path='/verify-code' element={<VerifyResetCode/>}/>
+          <Route path='/reset-password' element={<ResetPassword/>}/>
+          <Route path="*" element={<NotFound />} />
+        </Route>
+
       </Routes>
+        
+          
+      
     </div>
   );
 }
