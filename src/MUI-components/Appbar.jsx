@@ -10,6 +10,7 @@ import {
   Box,
   styled,
   Typography,
+  Badge,
 } from "@mui/material";
 import { Favorite, Menu, ShoppingCart } from "@mui/icons-material";
 import { purple } from "@mui/material/colors";
@@ -25,7 +26,6 @@ const ColorButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-
 const Appbar = ({ drawerWidth, showDrawer }) => {
   const userName = useSelector((state) => state.SignIn.userInfo?.name);
   console.log(userName);
@@ -38,17 +38,15 @@ const Appbar = ({ drawerWidth, showDrawer }) => {
 
   const navigate = useNavigate();
 
-
   return (
     <AppBar
       sx={{
         width: { sm: `calc(100% - ${drawerWidth}px)` },
         ml: { xs: 0, sm: `${drawerWidth}px` },
-        
       }}
       position="fixed"
     >
-      <Toolbar >
+      <Toolbar>
         <IconButton
           onClick={() => {
             showDrawer();
@@ -63,7 +61,7 @@ const Appbar = ({ drawerWidth, showDrawer }) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            width: "100%"
+            width: "100%",
           }}
         >
           <Link
@@ -77,59 +75,90 @@ const Appbar = ({ drawerWidth, showDrawer }) => {
           >
             Sakr Ecom
           </Link>
-          <Box component="div" sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between"
-          }} >
-            {token && <Button variant="text" color="inherit" onClick={() => {
-              navigate("/cart");
-            }}><ShoppingCart />({cartQuantity}) </Button>}
-            {token && <Button variant="text" color="inherit" onClick={() => {
-              navigate("/wishlist");
-            }}><Favorite color="error" />({WishListQuantity}) </Button>}
-            
-            {!token && <ColorButton
-        type="submit"
-        onClick={() => {
-              navigate("/signin");
+          <Box
+            component="div"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
             }}
-        variant="contained"
-      >
-        Sign In
-            </ColorButton>}
-            {!token && <ColorButton
-              type="submit"
-              onClick={() => {
-              navigate("/signup");
-            }}
-              variant="contained"
-              sx={{marginLeft: "10px"}}
-            >
-              Sign Up
-            </ColorButton>}
+          >
+            {token && (
+              <Button
+                variant="text"
+                color="inherit"
+                sx={{padding: "6px 0", minWidth:" 40px"}}
+                onClick={() => {
+                  navigate("/cart");
+                }}
+              ><Badge badgeContent={cartQuantity} color="error">
+                <ShoppingCart />
+                </Badge>
+              </Button>
+            )}
+            {token && (
+              <Button
+                variant="text"
+                color="inherit"
+                sx={{padding: "6px 0", minWidth:" 40px", ml:0.5}}
+                onClick={() => {
+                  navigate("/wishlist");
+                }}
+              ><Badge badgeContent={WishListQuantity} color="error">
+
+                <Favorite />
+                </Badge>
+              </Button>
+            )}
+
+            {!token && (
+              <ColorButton
+                type="submit"
+                onClick={() => {
+                  navigate("/signin");
+                }}
+                variant="contained"
+              >
+                Sign In
+              </ColorButton>
+            )}
+            {!token && (
+              <ColorButton
+                type="submit"
+                onClick={() => {
+                  navigate("/signup");
+                }}
+                variant="contained"
+                sx={{ marginLeft: "10px" }}
+              >
+                Sign Up
+              </ColorButton>
+            )}
             {/* {token && <Button variant="text" color="inherit" onClick={handleLogout}>
               Logout
             </Button>} */}
-            {token && <Link
-              sx={{
-                textDecoration: "none",
-                "&:hover": { fontSize: "16.5px" },
-                display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            cursor:"pointer"
-              }}
-              color="inherit"
-              onClick={() => {
-                navigate("/profile");
-              }}
-            >
-              {/* <Typography ml={2} mr={1} variant="body1" color="inherit">
+            {token && (
+              <Link
+                sx={{
+                  ml:2,
+                  textDecoration: "none",
+                  "&:hover": { fontSize: "16.5px" },
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  cursor: "pointer",
+                }}
+                color="inherit"
+                onClick={() => {
+                  navigate("/profile");
+                }}
+              >
+                <Typography ml={2} mr={1} variant="body1" color="inherit" sx={{display: { md: "block", xs : "none" }}}>
                 {userName}
-              </Typography> */}
-              <Avatar alt={userName} src=".." />
-            </Link>}
+              </Typography>
+                <Avatar alt={userName} src=".." />
+              </Link>
+            )}
           </Box>
         </Box>
       </Toolbar>
