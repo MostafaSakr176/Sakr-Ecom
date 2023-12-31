@@ -52,9 +52,10 @@ function Products() {
 
   return (
     <div>
-      <h1>Products</h1>
+      
 
       <div className="container">
+      <h1 className="mb-4">Products</h1>
         <div className="row">
           {data?.data.data.map(ele => 
             <div className="col-md-4 col-lg-3 mb-3" key={ele.id}>

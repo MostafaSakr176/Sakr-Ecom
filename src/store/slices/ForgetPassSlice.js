@@ -16,6 +16,7 @@ const initialState = {
 
 export const userSendCode = createAsyncThunk('SendCode/userSendCode', async (email)=>{    
 
+  console.log(email);
   const {data} = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords' , email)
   
   return data
@@ -48,12 +49,20 @@ export const SendCodeSlice = createSlice({
     });
 
     builder.addCase( userSendCode.rejected , (state , action)=>{
+      console.log(action.error);
       state.isSendCodeButtonLoading = false;
       state.isSendCodeSuccess = false;
       state.isSendCodeFaild = true;
-      toast.error("There is no user registered with this email -_-" ,{
+      if (action.error.message === "Request failed with status code 500") {
+        toast.error("There was an error sending the email. Try again later!" ,{
+          pauseOnFocusLoss: false
+        })
+      }else{
+        toast.error("There is no user registered with this email -_-" ,{
         pauseOnFocusLoss: false
       })
+      }
+      
     });
 
 

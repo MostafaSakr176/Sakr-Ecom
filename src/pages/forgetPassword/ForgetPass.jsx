@@ -3,8 +3,9 @@ import { useFormik } from "formik";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSendCodeSuccessFalse, userSendCode } from "../../store/slices/ForgetPassSlice";
-import { InfinitySpin } from "react-loader-spinner";
 import {useNavigate } from "react-router-dom";
+import { Box, Button, CircularProgress, TextField } from "@mui/material";
+
 
 function ForgetPass() {
   const dispatch = useDispatch();
@@ -43,7 +44,6 @@ function ForgetPass() {
   
     if (isSendCodeSuccess) {
       dispatch(setSendCodeSuccessFalse(false))
-      console.log(isSendCodeSuccess);
       navigate("/verify-code");
     }
 
@@ -52,7 +52,33 @@ function ForgetPass() {
 
   return (
     <>
-      <div className="container">
+
+<Box className="container" component="form" onSubmit={formikObj.handleSubmit} autoComplete="off" sx={{display: "flex" , flexDirection: "column" ,alignContent: "center", justifyContent: "center" , maxWidth:"500px",minWidth:"300px",margin:"auto"}}>
+
+<TextField
+  error = { formikObj.errors.email && formikObj.touched.email ? true : false}
+  label="Email"
+  name="email"
+  defaultValue={formikObj.values.email}
+  helperText={formikObj.errors.email && formikObj.touched.email ? formikObj.errors.email : "" }
+  onBlur={formikObj.handleBlur}
+  onChange={formikObj.handleChange}
+  value={formikObj.values.email}
+  required
+  fullWidth={true}
+  sx={{marginBottom:"20px",minWidth:"300px"}}
+/>
+
+<Button variant="contained" sx={{Width:"150px", height:"40px", margin:"auto"}} type="submit" disabled={!(formikObj.isValid && formikObj.dirty)}>{isSendCodeButtonLoading ? (
+      <CircularProgress sx={{color:"rgba(0, 0, 0, 0.87)"}} size={30}/>
+    ) : (
+      "send code"
+    )} </Button>
+
+</Box>
+
+
+      {/* <div className="container">
       <form
         className="row flex-column align-items-center mt-5"
         onSubmit={formikObj.handleSubmit}
@@ -92,7 +118,7 @@ function ForgetPass() {
           
         </div>
       </form>
-      </div>
+      </div> */}
     </>
   );
 }

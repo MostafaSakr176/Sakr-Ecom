@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userSignIn } from "../../store/slices/SignInSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getCartProducts } from "../../store/slices/CartSlice";
 import { getWishListProducts } from "../../store/slices/WishListSlice";
 import { Box, Button, CircularProgress, TextField } from "@mui/material";
@@ -59,7 +59,7 @@ function SignIn() {
   return (
     <>
 
-<Box component="form" onSubmit={formikObj.handleSubmit} autoComplete="off" sx={{display: "flex" , flexDirection: "column" ,alignContent: "center", justifyContent: "center"}}>
+    <Box className="container" component="form" onSubmit={formikObj.handleSubmit} autoComplete="off" sx={{display: "flex" , flexDirection: "column" ,alignContent: "center", justifyContent: "center" , maxWidth:"500px",minWidth:"300px",margin:"auto"}}>
 
         <TextField
           error = { formikObj.errors.email && formikObj.touched.email ? true : false}
@@ -95,6 +95,9 @@ function SignIn() {
             ) : (
               "Log In"
             )} </Button>
+
+        <Link to="/forget-pass" className="text-center my-2">forget password</Link>
+        <p className="text-center">do you haven't account ? <Link to="/signup">sign up</Link></p>
       
     </Box>
     

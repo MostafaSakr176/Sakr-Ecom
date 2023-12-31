@@ -2,8 +2,9 @@ import { useFormik } from "formik";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setResetPasswordSuccessFalse, userResetPassword } from "../../store/slices/ResetPasswordSlice";
-import { InfinitySpin } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
+import { Box, Button, CircularProgress, TextField } from "@mui/material";
+
 
 function ResetPassword() {
   const dispatch = useDispatch();
@@ -40,6 +41,10 @@ function ResetPassword() {
         errors.password = "password must contain at least 6 charctars";
       }
 
+      if (values.rePassword !== values.password) {
+        errors.newPassword = "password and repassword are not matching";
+      }
+
       return errors;
     },
   });
@@ -54,7 +59,63 @@ function ResetPassword() {
 
   return (
     <>
-      <div className="container">
+
+
+<Box className="container" component="form" onSubmit={formikObj.handleSubmit} autoComplete="off" sx={{display: "flex" , flexDirection: "column" ,alignContent: "center", justifyContent: "center" , maxWidth:"500px",minWidth:"300px",margin:"auto"}}>
+
+<TextField
+  error = { formikObj.errors.email && formikObj.touched.email ? true : false}
+  label="Email"
+  name="email"
+  defaultValue={formikObj.values.email}
+  helperText={formikObj.errors.email && formikObj.touched.email ? formikObj.errors.email : "" }
+  onBlur={formikObj.handleBlur}
+  onChange={formikObj.handleChange}
+  value={formikObj.values.email}
+  required
+            fullWidth={true}
+  sx={{marginBottom:"20px",minWidth:"300px"}}
+/>
+
+<TextField
+  error = { formikObj.errors.password && formikObj.touched.password ? true : false}
+  label="Password"
+  name="password"
+  defaultValue={formikObj.values.password}
+  helperText={formikObj.errors.password && formikObj.touched.password ? formikObj.errors.password : "" }
+  onBlur={formikObj.handleBlur}
+  onChange={formikObj.handleChange}
+  value={formikObj.values.password}
+  required
+            fullWidth={true}
+  sx={{marginBottom:"20px",minWidth:"300px"}}
+  type="password"
+/>
+
+<TextField
+  error = { formikObj.errors.newPassword && formikObj.touched.newPassword ? true : false}
+  label="newPassword"
+  name="newPassword"
+  defaultValue={formikObj.values.newPassword}
+  helperText={formikObj.errors.newPassword && formikObj.touched.newPassword ? formikObj.errors.newPassword : "" }
+  onBlur={formikObj.handleBlur}
+  onChange={formikObj.handleChange}
+  value={formikObj.values.newPassword}
+  required
+            fullWidth={true}
+  sx={{marginBottom:"20px",minWidth:"300px"}}
+  type="password"
+/>
+
+<Button variant="contained" sx={{Width:"150px", height:"40px", margin:"auto"}} type="submit" disabled={!(formikObj.isValid && formikObj.dirty)}>{isResetPasswordButtonLoading ? (
+      <CircularProgress sx={{color:"rgba(0, 0, 0, 0.87)"}} size={30}/>
+    ) : (
+      "set new password"
+    )} </Button>
+
+</Box>
+
+      {/* <div className="container">
       <form
         className="row flex-column align-items-center mt-5"
         onSubmit={formikObj.handleSubmit}
@@ -115,7 +176,7 @@ function ResetPassword() {
           
         </div>
       </form>
-      </div>
+      </div> */}
     </>
   );
 }

@@ -3,8 +3,9 @@ import { useFormik } from "formik";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setVerifyCodeSuccessFalse, userVerifyCode } from "../../store/slices/VerifyCodeSlice";
-import { InfinitySpin } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
+import { Box, Button, CircularProgress, TextField } from "@mui/material";
+
 
 function VerifyResetCode() {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ function VerifyResetCode() {
 
     //   const errors = {};
 
-    //   if (!(values.code.includes("@") && values.code.includes(".com"))) {
+    //   if (values.code.length < 6) {
     //     errors.code = "code is invalid";
     //   }
 
@@ -50,7 +51,30 @@ function VerifyResetCode() {
 
   return (
     <>
-      <form
+
+<Box className="container" component="form" onSubmit={formikObj.handleSubmit} autoComplete="off" sx={{display: "flex" , flexDirection: "column" ,alignContent: "center", justifyContent: "center" , maxWidth:"500px",minWidth:"300px",margin:"auto"}}>
+
+<TextField
+  label="verification Code"
+  name="resetCode"
+  defaultValue={formikObj.values.resetCode}
+  // helperText={formikObj.errors.resetCode && formikObj.touched.resetCode ? formikObj.errors.resetCode : "" }
+  onBlur={formikObj.handleBlur}
+  onChange={formikObj.handleChange}
+  value={formikObj.values.resetCode}
+  required
+  fullWidth={true}
+  sx={{marginBottom:"20px",minWidth:"300px"}}
+/>
+
+<Button variant="contained" sx={{Width:"150px", height:"40px", margin:"auto"}} type="submit" disabled={!(formikObj.isValid && formikObj.dirty)}>{isVerifyCodeButtonLoading ? (
+      <CircularProgress sx={{color:"rgba(0, 0, 0, 0.87)"}} size={30}/>
+    ) : (
+      "Verify code"
+    )} </Button>
+
+</Box>
+      {/* <form
         className="row flex-column align-items-center mt-5"
         onSubmit={formikObj.handleSubmit}
       >
@@ -81,7 +105,7 @@ function VerifyResetCode() {
           </button>
           
         </div>
-      </form>
+      </form> */}
     </>
   );
 }

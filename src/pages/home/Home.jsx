@@ -110,7 +110,7 @@ function Home() {
           {CatigoriesInfo.data?.data.data.map((ele, idx) => (
             <div key={idx}>
             <Link sx={{textDecoration:"none" , textAlign:"center"}} onClick={() => {
-                          navigate(`/catigoryProducts/${ele.id}`);
+                          navigate(`/catigoryProducts/${ele._id}`);
                         }}>
               <Card >
       <CardActionArea>

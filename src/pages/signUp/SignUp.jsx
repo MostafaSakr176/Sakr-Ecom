@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userSignUp , setIsSignUpSuccessFalse } from "../../store/slices/SignUpSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Box, Button, CircularProgress, TextField } from "@mui/material";
 
 function SignUp() {
@@ -76,7 +76,7 @@ function SignUp() {
     <>
       
 
-      <Box component="form" onSubmit={formikObj.handleSubmit} autoComplete="off" sx={{display: "flex" , flexDirection: "column" ,alignContent: "center", justifyContent: "center"}}>
+      <Box className="container" component="form" onSubmit={formikObj.handleSubmit} autoComplete="off" sx={{display: "flex" , flexDirection: "column" ,alignContent: "center", justifyContent: "center" , maxWidth:"500px",minWidth:"300px",margin:"auto"}}>
       <TextField
           error = { formikObj.errors.name && formikObj.touched.name ? true : false}
           label="Name"
@@ -149,6 +149,7 @@ function SignUp() {
             ) : (
               "Sign Up"
             )} </Button>
+            <p className="text-center mt-2">do you have account ? <Link to="/signin">sign in</Link></p>
       
     </Box>
 

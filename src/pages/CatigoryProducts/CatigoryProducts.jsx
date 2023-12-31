@@ -52,7 +52,7 @@ function CatigoryProducts() {
 
 
   if (data.data.data.length === 0) {
-    return <h1>there is no products yet !</h1>
+    return <h1 className='text-center'>there is no products yet !</h1>
   }
 
   return (
