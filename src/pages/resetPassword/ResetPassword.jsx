@@ -41,9 +41,9 @@ function ResetPassword() {
         errors.password = "password must contain at least 6 charctars";
       }
 
-      if (values.rePassword !== values.password) {
-        errors.newPassword = "password and repassword are not matching";
-      }
+      // if (values.rePassword !== values.password) {
+      //   errors.newPassword = "password and repassword are not matching";
+      // }
 
       return errors;
     },
@@ -77,7 +77,7 @@ function ResetPassword() {
   sx={{marginBottom:"20px",minWidth:"300px"}}
 />
 
-<TextField
+{/* <TextField
   error = { formikObj.errors.password && formikObj.touched.password ? true : false}
   label="Password"
   name="password"
@@ -90,7 +90,7 @@ function ResetPassword() {
             fullWidth={true}
   sx={{marginBottom:"20px",minWidth:"300px"}}
   type="password"
-/>
+/> */}
 
 <TextField
   error = { formikObj.errors.newPassword && formikObj.touched.newPassword ? true : false}
